@@ -54,7 +54,6 @@ def answer_question(question, context):
     start_idx = torch.argmax(start_logits)
     end_idx = torch.argmax(end_logits)
 
-    # Защита от ошибок
     if end_idx < start_idx:
         end_idx = start_idx
 
@@ -62,7 +61,6 @@ def answer_question(question, context):
     answer = tokenizer.decode(tokens, skip_special_tokens=True)
     return answer.strip()
 
-# === Главный цикл ===
 while True:
     question = input("Задай вопрос (или 'выход'): ")
     if question.lower() == "выход":
